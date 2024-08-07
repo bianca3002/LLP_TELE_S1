@@ -5,16 +5,16 @@
 
 int verifica_numero() {
     int num;
-    printf("digite um numero: ");
-    scanf("%d",num);
+    printf("digite um numero: \n");
+    scanf("%d",&num);
     if(num>0){
-        printf("O numero %d é positivo",num);
+        printf("O numero %d é positivo\n",num);
     }
     if(num<0){
-        printf("O numero %d é negativo",num);
+        printf("O numero %d é negativo\n",num);
     }
     if(num==0){
-        printf("O numero %d é zero",num);
+        printf("O numero %d é zero\n",num);
     }
 
     return 3;
