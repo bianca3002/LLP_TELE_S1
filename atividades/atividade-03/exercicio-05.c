@@ -1,7 +1,6 @@
-
-//1 Atividade com `while`:
-- Descrição: Escreva um programa que exiba os números pares de 1 a 10 usando um loop `while`.
-- Dica: Use o operador de módulo (`%`) para verificar se um número é par.
+//1 Atividade com while:
+// - Descrição: Escreva um programa que exiba os números pares de 1 a 10 usando um loop while.
+// - Dica: Use o operador de módulo (%) para verificar se um número é par.
 #include <stdio.h>
 
 int exiba_numeros_pares() {
@@ -18,12 +17,9 @@ int exiba_numeros_pares() {
 }
 
 
-//2. Atividade com `do while`:
-- Descrição: Crie um programa que solicite ao usuário que adivinhe um número entre 1 e 100. O programa deve continuar pedindo até que o usuário acerte o número ou digite `-1` para sair.
-- Dica: Use um loop `do while` para repetir a solicitação.
-
-#include <stdio.h>
-
+//2. Atividade com do while:
+// - Descrição: Crie um programa que solicite ao usuário que adivinhe um número entre 1 e 100. O programa deve continuar pedindo até que o usuário acerte o número ou digite -1 para sair.
+// - Dica: Use um loop do while para repetir a solicitação.
 int adivinhe_numero() {
     int numero_secreto = 42; // Número secreto para adivinhação
     int palpite;
@@ -50,12 +46,9 @@ int adivinhe_numero() {
 }
 
 
-//3. Atividade com `for`:
-- Descrição: Escreva um programa que calcule a soma dos primeiros 10 números inteiros positivos usando um loop `for`.
-- Dica: Use uma variável acumuladora para calcular a soma.
-
-#include <stdio.h>
-
+//3. Atividade com for:
+// - Descrição: Escreva um programa que calcule a soma dos primeiros 10 números inteiros positivos usando um loop for.
+// - Dica: Use uma variável acumuladora para calcular a soma.
 int calcule_a_soma() {
     int soma = 0;
 
@@ -67,3 +60,11 @@ int calcule_a_soma() {
 
     return 0;
 }
+
+int main() {
+    exiba_numeros_pares();
+    adivinhe_numero();
+    calcule_a_soma();
+    return 0;
+}
+    
