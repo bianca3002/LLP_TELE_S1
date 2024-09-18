@@ -1,79 +1,53 @@
- // 1. Criar um arquivo que armazena linhas de textos
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main() {
-    // Criar um arquivo que armazena linhas de textos
-    FILE *arquivo = fopen("meu_arquivo.txt", "w"); // Abre o arquivo em modo de escrita
-    if (arquivo == NULL) {
-        printf("Erro ao criar arquivo!\n");
+    FILE *file;
+    char linha[256];
+    char nomeArquivo[] = "texto.txt";
+
+    // Criar e abrir o arquivo para escrita
+    file = fopen(nomeArquivo, "w");
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para escrita.\n");
         return 1;
     }
 
-    // Gravar a string lida do teclado no arquivo
-    char linha[1024]; // Buffer para armazenar a linha de texto
-    printf("Digite uma linha de texto: ");
-    fgets(linha, 1024, stdin); // Lê a linha de texto do teclado
-    fprintf(arquivo, "%s", linha); // Escreve a linha no arquivo
-
-    fclose(arquivo); // Fecha o arquivo
-
-    return 0;
-}
-
-    // 2. O Arquivo será alimentado por dados digitados no teclado
-    char linha[1024]; // Buffer para armazenar a linha de texto
-   
-printf("Digite as linhas de texto (digite 'sair' para terminar):\n");
+    // Laço para inserir linhas de texto
+    printf("Digite linhas de texto (digite 'sair' para encerrar):\n");
     while (1) {
-        printf("> ");
-        fgets(linha, 1024, stdin); // Lê a linha de texto do teclado
-        if (strcmp(linha, "sair\n") == 0) {
-            break; // Sai do loop quando o usuário digita 'sair'
+        fgets(linha, sizeof(linha), stdin);
+        // Remover o newline no final da string
+        linha[strcspn(linha, "\n")] = 0;
+
+        // Verifica se o usuário digitou 'sair'
+        if (strcmp(linha, "sair") == 0) {
+            break;
         }
-        fprintf(arquivo, "%s", linha); // Escreve a linha no arquivo
-    }
 
-    // 3. Mostrar o conteúdo do arquivo
-
-1. Opção 1
-    fclose(arquivo); // Fecha o arquivo
-    arquivo = fopen("meu_arquivo.txt", "r"); // Abre o arquivo em modo de leitura
-    if (arquivo == NULL) {
-        printf("Erro ao ler arquivo!\n");
-        return 1;
-    }
-    char caractere;
-    while ((caractere = fgetc(arquivo)) != EOF) {
-        printf("%c", caractere); // Imprime o conteúdo do arquivo
-    }
-    fclose(arquivo); // Fecha o arquivo novamente
-
-    return 0;
-}
-
-2.Opção 2
-   
-#include <stdio.h>
-#include <stdlib.h>
-
-int main() {
-    // Abrir o arquivo em modo de leitura
-    FILE *arquivo = fopen("meu_arquivo.txt", "r"); // Abre o arquivo em modo de leitura
-    if (arquivo == NULL) {
-        printf("Erro ao ler arquivo!\n");
-        return 1;
-    }
-
-    // Ler cada linha do arquivo e mostrar
-    char linha[1024]; // Buffer para armazenar a linha de texto
-    printf("Conteúdo do arquivo:\n");
-    while (fgets(linha, 1024, arquivo) != NULL) {
-        printf("%s", linha); // Mostra a linha
+        // Gravar a linha no arquivo
+        fprintf(file, "%s\n", linha);
     }
 
     // Fechar o arquivo
-    fclose(arquivo); // Fecha o arquivo
+    fclose(file);
+
+    // Abrir o arquivo para leitura
+    file = fopen(nomeArquivo, "r");
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return 1;
+    }
+
+    // Ler e mostrar o conteúdo do arquivo
+    printf("\nConteúdo do arquivo:\n");
+    while (fgets(linha, sizeof(linha), file) != NULL) {
+        printf("%s", linha);
+    }
+
+    // Fechar o arquivo
+    fclose(file);
 
     return 0;
 }
